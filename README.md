@@ -57,21 +57,27 @@ SIU Campus Tour
 ```
 
 ###ObjectType
+```
 {
 	"Id":{integer},
 	"Name":{string}
 }
+```
 
 ###Reward
+```
 {
 	"Id":{integer},
 	"Name":{string},
 	"Type":{RewardType},
 	"Value":{string}
 }
+```
 
 ###RewardType
+```
 {
 	"Id":{integer},
 	"Name":{string}
 }
+```
