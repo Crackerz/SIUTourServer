@@ -83,13 +83,15 @@ SIU Campus Tour
 ```
 
 ###Error
+```
 {
 	"Message":{string}
 }
+```
 
 ##REST Access Points
 
-`/app`
+###/app
 
 Supports:
 * `PUT`
@@ -113,6 +115,7 @@ Output:
 ```
 
 `GET /app?token={token}`
+
 This query returns an array of apps. The token parameter is optional. If the token parameter is provided and matches the token of a registered app, this call will return an array of length one (1) whose sole member is that app. If no app has that registered token, an empty array will be returned.
 
 Input:
