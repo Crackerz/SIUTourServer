@@ -91,7 +91,8 @@ Throughout this documentation, we will not specifiy which URIs can return which 
 ```
 {
 	"Id":{integer},
-	"Name":{string}
+	"Name":{string},
+    "Description":{string}
 }
 ```
 
@@ -109,7 +110,8 @@ Throughout this documentation, we will not specifiy which URIs can return which 
 ```
 {
 	"Id":{integer},
-	"Name":{string}
+	"Name":{string},
+    "Description":{string}
 }
 ```
 
@@ -319,8 +321,8 @@ Input:
 ```
 {
     "Name":{string},
-    "Type":{ObjectType},
-    "Value":{string}
+    "Type":{int}, //id of ObjectType
+    "Value":{JSON Object}
 }
 ```
 
@@ -371,6 +373,52 @@ Input:
 Output:
 ```
 
+```
+
+###/type/object
+Supports:
+* `POST`
+* `GET`
+
+`POST /type/object`
+
+This registers a new object type with our API's type system.
+
+Input:
+```
+{
+    "Name":{string},
+    "Description:{string}
+}
+```
+
+Output:
+```
+{
+    "Result":{
+        "Id":{int}
+    }
+}
+```
+
+`GET /type/object[/id]`
+
+This query returns an array of ObjectTypes. The id parameter is optional. If the id parameter is provided and matches the id of a registered ObjectType, this call will return an array of length one (1) whose sole member is that ObjectType. If no ObjectType has that registered id, an empty array will be returned.
+
+Input:
+```
+
+```
+
+Output:
+```
+{
+    "ObjectTypes":[{
+        "Id":{integer},
+        "Name":{string},
+        "Description":{string}
+    },...]
+}
 ```
 
 ###/app/{id}/user
@@ -458,7 +506,7 @@ Output:
 
 ```
 
-`DELETE`
+`DELETE /objective/{id}/object/{id}`
 
 Removes a mapping from an object to an objective.
 
