@@ -305,6 +305,74 @@ Output:
 }
 ```
 
+###/object
+Supports:
+* `POST`
+* `GET`
+* `PATCH`
+
+`POST /object`
+
+Post registers a new object with the server
+
+Input:
+```
+{
+    "Name":{string},
+    "Type":{ObjectType},
+    "Value":{string}
+}
+```
+
+Output:
+```
+{
+    "Result":{
+        "Id":{int}
+    }
+}
+```
+
+`GET /object[/{id}]`
+
+This query returns an array of objects. The id parameter is optional. If the id parameter is provided and matches the id of a registered object, this call will return an array of length one (1) whose sole member is that object. If no object has that registered id, an empty array will be returned.
+
+Input:
+```
+
+```
+
+Output:
+```
+{
+    "Objects":[{
+        "Id":{integer},
+        "Name":{string},
+        "Type":{ObjectType},
+        "Value":{string}
+    },...]
+}
+```
+
+`PATCH /object/{id}`
+
+Patch updates the specified object with the provided properties. All properties in the json input are optional. Any properties not defined in the input will remain unaltered on the server.
+
+Input:
+```
+{
+    "Id":{integer},
+    "Name":{string},
+    "Type":{ObjectType},
+    "Value":{string}
+}
+```
+
+Output:
+```
+
+```
+
 ###/app/{id}/user
 Supports:
 * `POST`
@@ -360,6 +428,57 @@ Output
 `DELETE /app/{id}/objective/{id}`
 
 Removes an objective from an application. The first {id} belongs to the app, the second {id} belongs to the objective. This does not delete an objective's mapping to the app, only deactivates it so that users can no longer complete the objective through this application.
+
+Input:
+```
+
+```
+
+Output:
+```
+
+```
+
+###/objective/{id}/object/
+Supports:
+* `POST`
+* `DELETE`
+
+`POST /objectve/{id}/object/{id}`
+
+Maps an object to an objective, making aquiring the object a prerequisit for completing the objective.
+
+Input:
+```
+
+```
+
+Output:
+```
+
+```
+
+`DELETE`
+
+Removes a mapping from an object to an objective.
+
+Input:
+```
+
+```
+
+Output:
+```
+
+```
+
+###/user/{id}/object/
+Supports:
+* `POST`
+
+`POST /objectve/{id}/object/{id}`
+
+Maps an object to a user, objectives for which the object is a prerequisit will have their progress updated.
 
 Input:
 ```
