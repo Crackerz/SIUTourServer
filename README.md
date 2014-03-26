@@ -40,6 +40,7 @@ Throughout this documentation, we will not specifiy which URIs can return which 
 * ObjectType
 * Reward
 * RewardType
+* Error
 
 ###App
 ```
@@ -375,6 +376,115 @@ Output:
 
 ```
 
+###/reward
+Supports:
+* `POST`
+* `GET`
+* `PATCH`
+
+`POST /reward`
+
+Input:
+```
+    "Name":{string},
+    "Type":{int}, //id of a RewardType
+    "Value":{string}
+```
+
+Output:
+```
+{
+    "Result":{
+        "Id":{int}
+    }
+}
+```
+`GET /reward[/{id}]`
+
+This query returns an array of rewards. The id parameter is optional. If the id parameter is provided and matches the id of a registered reward, this call will return an array of length one (1) whose sole member is that reward. If no reward has that registered id, an empty array will be returned.
+
+Input:
+```
+
+```
+
+Output:
+```
+{
+    "Rewards":[{
+        "Id":{integer},
+        "Name":{string},
+        "Type":{RewardType},
+        "Value":{string}
+    },...]
+}
+```
+
+`PATCH /reward/{id}`
+
+Patch updates the specified reward with the provided properties. All properties in the json input are optional. Any properties not defined in the input will remain unaltered on the server.
+
+Input:
+```
+{
+    "Id":{integer},
+    "Name":{string},
+    "Type":{RewardType},
+    "Value":{string}
+}
+```
+
+Output:
+```
+
+```
+
+###/type/reward
+Supports:
+* `POST`
+* `GET`
+
+`POST /type/reward`
+
+This registers a new reward type with our API's type system.
+
+Input:
+```
+{
+    "Name":{string},
+    "Description":{string}
+}
+```
+
+Output:
+```
+{
+    "Result":{
+       "Id":{int} 
+    }
+}
+```
+`GET /type/object[/{id}]`
+
+This query returns an array of RewardTypes. The id parameter is optional. If the id parameter is provided and matches the id of a registered RewardType, this call will return an array of length one (1) whose sole member is that RewardType. If no RewardType has that registered id, an empty array will be returned.
+
+Input:
+```
+
+```
+
+Output:
+```
+{
+    "RewardTypes":[{
+        "Id":{integer},
+        "Name":{string},
+        "Description":{string}
+    },...]
+}
+```
+
+
 ###/type/object
 Supports:
 * `POST`
@@ -401,7 +511,7 @@ Output:
 }
 ```
 
-`GET /type/object[/id]`
+`GET /type/object[/{id}]`
 
 This query returns an array of ObjectTypes. The id parameter is optional. If the id parameter is provided and matches the id of a registered ObjectType, this call will return an array of length one (1) whose sole member is that ObjectType. If no ObjectType has that registered id, an empty array will be returned.
 
