@@ -1,4 +1,4 @@
-<?
+<?php
 //A function that supports setting the response code for versions of php < 5.4
 
 if (!function_exists('http_response_code')) {
