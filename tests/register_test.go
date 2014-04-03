@@ -13,7 +13,7 @@ func TestApp(t *testing.T) {
 	}
 	resp,err:=client.Do(req)
 	if err!=nil {
-		t.Error("Error executing request: "err)
+		t.Error("Error executing request: ",err)
 	} else if resp.StatusCode!=500 {
 		t.Error("Received Status: ",resp.Status)
 	}
