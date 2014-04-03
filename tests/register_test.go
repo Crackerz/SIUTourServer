@@ -3,6 +3,7 @@ package tests
 import "testing"
 import "net/http"
 import "math/rand"
+import "io/ioutil"
 
 func TestApp(t *testing.T) {
 	client := &http.Client{};
@@ -15,7 +16,8 @@ func TestApp(t *testing.T) {
 	if err!=nil {
 		t.Error("Error executing request: ",err)
 	} else if resp.StatusCode!=500 {
-		t.Error("Received Status: ",resp.Status,"\nMessage Body: ",resp.Body)
+		body,_ := ioutil.ReadAll(resp.Body)
+		t.Error("Received Status: ",resp.Status,"\nMessage Body: ",string(body))
 	}
 }
 
