@@ -7,7 +7,7 @@ import "math/rand"
 func TestApp(t *testing.T) {
 	client := &http.Client{};
 
-	req,err:=http.NewRequest("GET","http://127.0.0.1:8081/test",nil)
+	req,err:=http.NewRequest("GET","http://127.0.0.1:80/test",nil)
 	if err!=nil {
 		t.Error("Error making request: ",err)
 	}
