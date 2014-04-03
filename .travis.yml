@@ -5,7 +5,7 @@ go:
 
 before_script:
     - ls -all
-    - ls -all ~/.phpenv/versions/
+    - ls -all ~/
     - sudo apt-get update
     - sudo apt-get install apache2 libapache2-mod-fastcgi
     # enable php-fpm
