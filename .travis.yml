@@ -4,6 +4,8 @@ go:
     - 1.2
 
 before_script:
+    - ls -all
+    - ls -all ~/.phpenv/versions/
     - sudo apt-get update
     - sudo apt-get install apache2 libapache2-mod-fastcgi
     # enable php-fpm
@@ -15,5 +17,3 @@ before_script:
     - sudo cp -f build/travis-ci-apache /etc/apache2/sites-available/default
     - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
     - sudo service apache2 restart
-    - ls -all
-    - ls -all ~/.phpenv/versions/
