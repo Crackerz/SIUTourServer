@@ -63,13 +63,12 @@ func TestCreateApp(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON AppResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 }
@@ -99,13 +98,12 @@ func TestCreateUser(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON UserResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 }
@@ -134,13 +132,12 @@ func TestCreateAction(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON ActionResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 }
@@ -168,13 +165,12 @@ func TestCreateObjective(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON ObjectiveResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 }
@@ -202,13 +198,12 @@ func TestCreateReward(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON RewardResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 }
@@ -235,13 +230,12 @@ func TestCreateActionType(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON ActionTypeResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 
@@ -269,13 +263,12 @@ func TestCreateRewardType(t *testing.T) {
 		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
 	}
 
-	/**TODO: check values of returned object**/
     var respJSON RewardTypeResult
     err = json.Unmarshal(respBody,&respJSON)
 
     if err != nil {
         t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
-    } else if respJSON.Result != nil {
+    } else if respJSON.Result == nil {
         t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
     }
 
