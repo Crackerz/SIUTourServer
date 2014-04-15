@@ -1,2 +1,2 @@
 default:
-	go test tests/*
+	go test tests/*_test.go
