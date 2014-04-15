@@ -2,9 +2,10 @@
 //Setup our REST framework library
 include_once './epiphany/src/Epi.php';
 include_once './http_response_code.php';
+include_once './app.php';
 Epi::setPath('base','./epiphany/src');
 Epi::init('route');
-Epi::setSetting('exceptions',true);
+//Epi::setSetting('exceptions',true);
 
 //Load in our API configuration file
 Epi::setPath('config','./');
