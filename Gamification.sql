@@ -7,6 +7,9 @@
 -- Server version: 5.5.34
 -- PHP Version: 5.4.22
 
+CREATE DATABASE IF NOT EXISTS `gamification`;
+USE `gamification`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
