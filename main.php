@@ -1,5 +1,4 @@
 <?php
-
 //Setup our REST framework library
 include_once './epiphany/src/Epi.php';
 include_once './http_response_code.php';
