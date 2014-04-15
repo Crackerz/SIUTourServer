@@ -2,7 +2,6 @@ package tests
 
 import (
 	"io/ioutil"
-	//	"math/rand"
 	"encoding/json"
 	"errors"
 	"net/http"
@@ -34,19 +33,6 @@ func QueryServer(method, resource, body string) (responseBody []byte, responseCo
 	return
 }
 
-/*
-func TestDistribution(t *testing.T) {
-	min, max := 0, 200
-	r := rand.New(rand.NewSource(20))
-	for i := 0; i < 10000; i++ {
-		sample := int(r.Float64())*(max-min) + min
-		if sample < min || sample > max {
-			t.Error(sample)
-		}
-	}
-}
-*/
-
 /**
  * Begin APP tests
  */
@@ -67,6 +53,7 @@ func TestCreateApp(t *testing.T) {
 	if err != nil {
 		t.Fatal("Unable to marshal json in test:  CreateApp")
 	}
+
 	respBody, code, err := QueryServer("POST", "/app", string(body))
 
 	if err != nil {
@@ -87,4 +74,209 @@ func TestCreateApp(t *testing.T) {
     }
 }
 
-//func QueryServer(method, resource, body string) (responseBody string, responseCode int, err error)
+func TestCreateUser(t *testing.T) {
+
+    type UserRequest struct {
+        Fname string
+        Lname string
+        Birthday string
+        UserID string
+    }
+
+	type UserResult struct {
+		Result *struct {
+			Id int
+		}
+    }
+
+    body,err := json.Marshal(UserRequest{"Testing","Tester","10201992","SIU850955916"})
+	if err != nil {
+		t.Error("Could not make request.\n", err.Error())
+	}
+
+	respBody, code, err := QueryServer("POST", "/user", string(body))
+	if code != 200 {
+		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	}
+
+	/**TODO: check values of returned object**/
+    var respJSON UserResult
+    err = json.Unmarshal(respBody,&respJSON)
+
+    if err != nil {
+        t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
+    } else if respJSON.Result != nil {
+        t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
+    }
+}
+
+func TestCreateAction(t *testing.T) {
+
+    type ActionRequest struct {
+        Name string
+        Type int
+        Description string
+    }
+
+	type ActionResult struct {
+		Result *struct {
+			Id int
+		}
+    }
+
+    body,err := json.Marshal(ActionRequest{"Testing",0,"A test action"})
+	if err != nil {
+		t.Error("Could not make request.\n", err.Error())
+	}
+
+	respBody, code, err := QueryServer("POST", "/action", string(body))
+	if code != 200 {
+		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	}
+
+	/**TODO: check values of returned object**/
+    var respJSON ActionResult
+    err = json.Unmarshal(respBody,&respJSON)
+
+    if err != nil {
+        t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
+    } else if respJSON.Result != nil {
+        t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
+    }
+}
+
+func TestCreateObjective(t *testing.T) {
+
+    type ObjectiveRequest struct {
+        Name string
+        Description string
+    }
+
+	type ObjectiveResult struct {
+		Result *struct {
+			Id int
+		}
+    }
+
+    body,err := json.Marshal(ObjectiveRequest{"Testing","A test objective"})
+	if err != nil {
+		t.Error("Could not make request.\n", err.Error())
+	}
+
+	respBody, code, err := QueryServer("POST", "/objective", string(body))
+	if code != 200 {
+		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	}
+
+	/**TODO: check values of returned object**/
+    var respJSON ObjectiveResult
+    err = json.Unmarshal(respBody,&respJSON)
+
+    if err != nil {
+        t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
+    } else if respJSON.Result != nil {
+        t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
+    }
+}
+
+func TestCreateReward(t *testing.T) {
+    type RewardRequest struct {
+        Name string
+        Type int
+        Value string
+    }
+
+	type RewardResult struct {
+		Result *struct {
+			Id int
+		}
+    }
+
+    body,err := json.Marshal(RewardRequest{"Testing",0,"A test objective"})
+	if err != nil {
+		t.Error("Could not make request.\n", err.Error())
+	}
+
+	respBody, code, err := QueryServer("POST", "/reward", string(body))
+	if code != 200 {
+		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	}
+
+	/**TODO: check values of returned object**/
+    var respJSON RewardResult
+    err = json.Unmarshal(respBody,&respJSON)
+
+    if err != nil {
+        t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
+    } else if respJSON.Result != nil {
+        t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
+    }
+}
+
+func TestCreateActionType(t *testing.T) {
+    type ActionTypeRequest struct {
+        Name string
+        Description string
+    }
+
+	type ActionTypeResult struct {
+		Result *struct {
+			Id int
+		}
+    }
+
+    body,err := json.Marshal(ActionTypeRequest{"Testing","A test objective"})
+	if err != nil {
+		t.Error("Could not make request.\n", err.Error())
+	}
+
+	respBody, code, err := QueryServer("POST", "/type/action", string(body))
+	if code != 200 {
+		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	}
+
+	/**TODO: check values of returned object**/
+    var respJSON ActionTypeResult
+    err = json.Unmarshal(respBody,&respJSON)
+
+    if err != nil {
+        t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
+    } else if respJSON.Result != nil {
+        t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
+    }
+
+}
+
+func TestCreateRewardType(t *testing.T) {
+    type RewardTypeRequest struct {
+        Name string
+        Description string
+    }
+
+	type RewardTypeResult struct {
+		Result *struct {
+			Id int
+		}
+    }
+
+    body,err := json.Marshal(RewardTypeRequest{"Testing","A test objective"})
+	if err != nil {
+		t.Error("Could not make request.\n", err.Error())
+	}
+
+	respBody, code, err := QueryServer("POST", "/type/reward", string(body))
+	if code != 200 {
+		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	}
+
+	/**TODO: check values of returned object**/
+    var respJSON RewardTypeResult
+    err = json.Unmarshal(respBody,&respJSON)
+
+    if err != nil {
+        t.Error(err.Error(),"\nUnable to parse response as JSON.\nMessage Body:\n",string(respBody))
+    } else if respJSON.Result != nil {
+        t.Error("No Result object in response.\nMessage Body:\n",string(respBody))
+    }
+
+}
