@@ -14,7 +14,7 @@ import (
  */
 
 var client = &http.Client{}
-var url = "http://127.0.0.1:80"
+var url = "http://127.0.0.1:8081"
 
 func QueryServer(method, resource, body string) (responseBody []byte, responseCode int, err error) {
 	req, err := http.NewRequest(method, url+resource, strings.NewReader(body))
