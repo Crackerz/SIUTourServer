@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `reward_type` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fname` text NOT NULL,
   `lname` text NOT NULL,
   `bday` date NOT NULL,
