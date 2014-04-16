@@ -3,6 +3,7 @@
 include_once './epiphany/src/Epi.php';
 include_once './http_response_code.php';
 include_once './server/app.php';
+include_once './database.php';
 Epi::setPath('base','./epiphany/src');
 Epi::init('route');
 //Epi::setSetting('exceptions',true);
@@ -19,4 +20,29 @@ class test {
 	}
 }
 
+/*****************************************************************
+ * These functions are called to return http response codes      *
+ * Use them to handle errors in your code cleanly                *
+ *****************************************************************/
+
+//Return 202 and optionally reply with a response string
+function resourceCreated($response) {
+	http_response_code(201);
+	echo $response;
+}
+
+function resourceNotFound() {
+	http_response_code(404);
+	die("not found"); //TODO remove string. Only for debugging purposes.
+}
+
+function internalServerError($msg) {
+	http_response_code(500);
+	die($msg);
+}
+
+function malformedRequest() {
+	http_response_code(400);
+	die("malformed"); //TODO remove string. Only for debugging.
+}
 ?>
