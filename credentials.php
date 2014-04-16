@@ -4,4 +4,5 @@
 	$GLOBALS["SERVER_PASSWORD"] = "";
 	$GLOBALS["SERVER_DATABASE"] = "gamification";
 	$GLOBALS["APP_TABLE"] = "app";
+	$GLOBALS["USER_TABLE"] = "user";
 ?>

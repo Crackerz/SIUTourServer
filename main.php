@@ -3,6 +3,7 @@
 include_once './epiphany/src/Epi.php';
 include_once './http_response_code.php';
 include_once './server/app.php';
+include_once './server/user.php';
 include_once './database.php';
 Epi::setPath('base','./epiphany/src');
 Epi::init('route');

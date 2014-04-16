@@ -21,5 +21,10 @@ class Database {
 		$query = "INSERT INTO `".$GLOBALS["APP_TABLE"]."` (`name`,`token`,`status`) VALUES ('".$app->Name."','".hash("sha512",rand())."',0)";
 		return $this->connection->query($query);
 	}
+	
+	public function createUser($user) {
+		$query = "INSERT INTO `".$GLOBALS["USER_TABLE"]."` (`fname`,`lname`,`bday`,`userId`) VALUES ('".$user->Fname."','".$user->Lname."','".$user->Birthday."','".$user->UserId."')";
+		return $this->connection->query($query);
+	}
 }
 ?>
