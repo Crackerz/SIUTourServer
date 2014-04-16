@@ -14,7 +14,7 @@ import (
  */
 
 var client = &http.Client{}
-var url = "http://127.0.0.1:8081"
+var url = "http://127.0.0.1:80"
 
 func QueryServer(method, resource, body string) (responseBody []byte, responseCode int, err error) {
 	req, err := http.NewRequest(method, url+resource, strings.NewReader(body))
@@ -59,8 +59,8 @@ func TestCreateApp(t *testing.T) {
 	if err != nil {
 		t.Error("Could not make request.\n", err.Error())
 	}
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON AppResult
@@ -94,8 +94,8 @@ func TestCreateUser(t *testing.T) {
 	}
 
 	respBody, code, err := QueryServer("POST", "/user", string(body))
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON UserResult
@@ -128,8 +128,8 @@ func TestCreateAction(t *testing.T) {
 	}
 
 	respBody, code, err := QueryServer("POST", "/action", string(body))
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON ActionResult
@@ -161,8 +161,8 @@ func TestCreateObjective(t *testing.T) {
 	}
 
 	respBody, code, err := QueryServer("POST", "/objective", string(body))
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON ObjectiveResult
@@ -194,8 +194,8 @@ func TestCreateReward(t *testing.T) {
 	}
 
 	respBody, code, err := QueryServer("POST", "/reward", string(body))
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON RewardResult
@@ -226,8 +226,8 @@ func TestCreateActionType(t *testing.T) {
 	}
 
 	respBody, code, err := QueryServer("POST", "/type/action", string(body))
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON ActionTypeResult
@@ -259,8 +259,8 @@ func TestCreateRewardType(t *testing.T) {
 	}
 
 	respBody, code, err := QueryServer("POST", "/type/reward", string(body))
-	if code != 200 {
-		t.Error("Received incorrect error code. Expected 200 and recieved ", code)
+	if code != 201 {
+		t.Error("Received incorrect error code. Expected 201 and recieved ", code)
 	}
 
     var respJSON RewardTypeResult
