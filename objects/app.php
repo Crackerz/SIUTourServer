@@ -6,7 +6,7 @@ class AppObject {
     public $Objetives;
     public $Users;
 
-    public static function buildAppFromObject(&$obj) {
+    public static function buildAppFromObject($obj) {
         $result = new AppObject();
         //Grab all property names of this object and populate them if
         //the object had the same names declared
