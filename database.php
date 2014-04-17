@@ -36,7 +36,7 @@ class Database {
 	}
 
 	public function createAction($action) {
-		$query = "INSERT INTO `".$GLOBALS["ACTION_TABLE"]."` (`name`,`type`,`value`) VALUES ('".$action->Name."','".$action->Type."',".$action->Value.")";
+		$query = "INSERT INTO `".$GLOBALS["ACTION_TABLE"]."` (`name`,`type`,`value`) VALUES ('".$action->Name."',".$action->Type.",'".$action->Value."')";
 		return $this->connection->query($query);
 	}
 
