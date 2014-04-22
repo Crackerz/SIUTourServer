@@ -1,2 +1,2 @@
 default:
-	go test *_test.go
+	go test *_test.go abstraction.go
