@@ -82,7 +82,7 @@ func createUser(fname, lname, birthday, userID string) (assetID int, err error) 
 	return output.Result.Id, nil;
 }
 
-func createAction(name, description string, actionType int) (assetID int, err error) {
+func createAction(name, value string, actionType int) (assetID int, err error) {
     type ActionRequest struct {
         Name string
         Type int
@@ -95,7 +95,7 @@ func createAction(name, description string, actionType int) (assetID int, err er
 		}
     }
 
-    var input = ActionRequest{name,actionType,description}
+    var input = ActionRequest{name,actionType,value}
     var output ActionResult
     respBody,err := makeRequest(input,&output, "POST", "/action")
 
@@ -212,6 +212,54 @@ func createRewardType(name, description string) (assetId int, err error) {
     }
 
 	return output.Result.Id, nil;
+}
+
+func mapUserApp(userId, appId int) error {
+    user := strconv.Itoa(userId)
+    app := strconv.Itoa(appId)
+    body,err := makeRequest(nil,nil,"POST","/app/"+app+"/user/"+user);
+
+	if err != nil {
+        return errors.New("Message Body: "+string(body)+"\n"+err.Error());
+	}
+
+    return nil;
+}
+
+func mapAppObjective(appId, objectiveId int) error {
+    app := strconv.Itoa(appId)
+    objective := strconv.Itoa(objectiveId)
+    body,err := makeRequest(nil,nil,"POST","/app/"+app+"/objective/"+objective);
+
+	if err != nil {
+        return errors.New("Message Body: "+string(body)+"\n"+err.Error());
+	}
+
+    return nil;
+}
+
+func mapUserAction(userId, actionId int) error {
+    user := strconv.Itoa(userId)
+    action := strconv.Itoa(actionId)
+    body,err := makeRequest(nil,nil,"POST","/user/"+user+"/action/"+action);
+
+	if err != nil {
+        return errors.New("Message Body: "+string(body)+"\n"+err.Error());
+	}
+
+    return nil;
+}
+
+func mapActionObjective(actionId, objectiveId int) error {
+    action := strconv.Itoa(actionId)
+    objective := strconv.Itoa(objectiveId)
+    body,err := makeRequest(nil,nil,"POST","/objective/"+objective+"/action/"+action);
+
+	if err != nil {
+        return errors.New("Message Body: "+string(body)+"\n"+err.Error());
+	}
+
+    return nil;
 }
 
 func makeRequest(input interface{}, output interface{}, method, url string) ([]byte, error) {
