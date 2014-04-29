@@ -86,6 +86,21 @@ CREATE TABLE IF NOT EXISTS `map_action_objective` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `map_objective_user`
+--
+
+DROP TABLE IF EXISTS `map_action_user`;
+CREATE TABLE IF NOT EXISTS `map_action_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `map_objective_app`
 --
 
