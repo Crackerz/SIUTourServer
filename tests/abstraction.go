@@ -263,10 +263,14 @@ func mapActionObjective(actionId, objectiveId int) error {
 }
 
 func makeRequest(input interface{}, output interface{}, method, url string) ([]byte, error) {
-    body,err := json.Marshal(input)
-	if err != nil {
-		return nil, errors.New("Could not marshal JSON in test: CreateActionType.\n"+ err.Error())
-	}
+    var body []byte;
+    var err error;
+    if input != nil {
+        body,err = json.Marshal(input)
+        if err != nil {
+            return nil, errors.New("Could not marshal JSON in test: CreateActionType.\n"+ err.Error())
+        }
+    }
 
 	respBody, code, err := QueryServer(method, url, string(body))
 	if err != nil {
@@ -276,7 +280,9 @@ func makeRequest(input interface{}, output interface{}, method, url string) ([]b
 		return respBody, errors.New("Received incorrect error code. Expected 201 and recieved "+strconv.Itoa(code))
 	}
 
-    err = json.Unmarshal(respBody,&output)
+    if len(respBody) > 0 {
+        err = json.Unmarshal(respBody,&output)
+    }
 
     if err != nil {
         return respBody, errors.New(err.Error()+"\nUnable to parse response as JSON.\nMessage Body:\n"+string(respBody))

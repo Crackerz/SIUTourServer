@@ -14,4 +14,29 @@ class ObjectiveAPI {
 
 		resourceCreated('{"Result":{"Id":'.$db->connection->insert_id.'}}');
 	}
+
+    public static function MapActionEndpoint() {
+        $uri = explode("/",$_SERVER['REQUEST_URI']);
+        $objective = $uri[2];
+        $action = $uri[4];
+        $map = MapObject::newMap($objective,$action);
+        $db = new Database();
+        if(!$db->connect() || !$db->mapActionObjective($map)) {
+            internalServerError($db->getError());
+        }
+        resourceCreated("");
+    }
+
+    public static function MapRewardEndpoint() {
+        $uri = explode("/",$_SERVER['REQUEST_URI']);
+        $objective = $uri[2];
+        $reward = $uri[4];
+        $map = MapObject::newMap($objective,$reward);
+        $db = new Database();
+        if(!$db->connect() || !$db->mapRewardObjective($map)) {
+            internalServerError($db->getError());
+        }
+        resourceCreated("");
+    }
+
 }

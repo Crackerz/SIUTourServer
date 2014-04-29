@@ -54,5 +54,30 @@ class Database {
 		$query = "INSERT INTO `".$GLOBALS["REWARD_TYPE_TABLE"]."` (`name`,`description`) VALUES ('".$rewardType->Name."','".$rewardType->Description."')";
 		return $this->connection->query($query);
 	}
+
+    public function mapUserApp($map) {
+        $query = "INSERT INTO `".$GLOBALS["USER_APP_MAP_TABLE"]."` (`app_id`,`user_id`) VALUES(".$map->firstId.",".$map->secondId.")";
+        return $this->connection->query($query);
+    }
+
+    public function mapObjectiveApp($map) {
+        $query = "INSERT INTO `".$GLOBALS["OBJECTIVE_APP_MAP_TABLE"]."` (`app_id`,`objective_id`) VALUES(".$map->firstId.",".$map->secondId.")";
+        return $this->connection->query($query);
+    }
+
+    public function mapActionObjective($map) {
+        $query = "INSERT INTO `".$GLOBALS["ACTION_OBJECTIVE_MAP_TABLE"]."` (`objective_id`,`action_id`) VALUES(".$map->firstId.",".$map->secondId.")";
+        return $this->connection->query($query);
+    }
+
+    public function mapRewardObjective($map) {
+        $query = "INSERT INTO `".$GLOBALS["REWARD_OBJECTIVE_MAP_TABLE"]."` (`objective_id`,`reward_id`) VALUES(".$map->firstId.",".$map->secondId.")";
+        return $this->connection->query($query);
+    }
+
+    public function mapObjectiveUser($map) {
+        $query = "INSERT INTO `".$GLOBALS["OBJECTIVE_USER_MAP_TABLE"]."` (`user_id`,`objective_id`) VALUES(".$map->firstId.",".$map->secondId.")";
+        return $this->connection->query($query);
+    }
 }
 ?>

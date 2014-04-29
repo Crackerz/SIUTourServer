@@ -9,9 +9,10 @@ include_once './server/action.php';
 include_once './server/reward.php';
 include_once './server/type.php';
 include_once './database.php';
+include_once './objects/map.php';
 Epi::setPath('base','./epiphany/src');
 Epi::init('route');
-//Epi::setSetting('exceptions',true);
+Epi::setSetting('exceptions',true);
 
 //Load in our API configuration file
 Epi::setPath('config','./');
